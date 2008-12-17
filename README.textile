@@ -1,11 +1,14 @@
 h1. A Dynamic DNS client for domains parked at "afraid.org":afraid.
 
 You can explore and update your IP address from Ruby or the command line.
-The command-line program can be configured to run on an interval using *cron*.
+The command-line program can be configured to run on an interval using *cron*,
+and notify you using "Growl":growl (or "Mumbles":mumbles on Linux).
 
 h2. Usage
 
 h3. On the command line...
+
+h4. Checking out your "afraid.org":afraid configuration
 
 <pre><code>
 % updateafraid -user YOURUSERAME -password YOURPASSWORD
@@ -16,10 +19,16 @@ irc.yourdomain.com      (209.6.22.66)
 mail.yourdomain.com     (209.6.22.66)
 www.yourdomain.com      (209.6.22.66)
 </code></pre>
+
+h4. Updating a single domain
+
 <pre><code>
 % updateafraid -user YOURUSERAME -password YOURPASSWORD -domain yourdomain.com
 ERROR: Address 209.6.22.66 has not changed.
 </code></pre>
+
+h4. Updating all of your domains at once
+
 <pre><code>
 % updateafraid -user YOURUSERAME -password YOURPASSWORD -all
 yourdomain.com - ERROR: Address 209.6.22.66 has not changed.
@@ -27,6 +36,13 @@ ftp.yourdomain.com - ERROR: Address 209.6.22.66 has not changed.
 irc.yourdomain.com - ERROR: Address 209.6.22.66 has not changed.
 mail.yourdomain.com - ERROR: Address 209.6.22.66 has not changed.
 www.yourdomain.com - ERROR: Address 209.6.22.66 has not changed.
+</code></pre>
+
+h4. Setting up "Growl":growl notifications
+
+<pre><code>
+% updateafraid -u YOURUSERAME -p YOURPASSWORD -d yourdomain.com --growl-at localhost --growl-password YOURPASSWORD
+ERROR: Address 209.6.22.66 has not changed.
 </code></pre>
 
 h3. In Ruby...
@@ -54,11 +70,8 @@ afraid.update_all
 
 </code></pre>
 
-h2. TODO:
-You can keep track of upcoming features at "RememberTheMilk":todo.
-If you want to be notified as progress is made, you can subscribe to the "feed":http://www.rememberthemilk.com/atom/logan.koester/6437617/?tok=eJwNjdEKwzAIAL8oI8ao8XM0mjJWVlj7-yzc08HBdXFCMIgVa2iIzzYpAmn0zWSF6EAxM6pgo11Vn6COFbgupHJeh31fnyvvJ3-lfN9P4Y7CIAVBrUp2M0VRGquOzH3pM7aqsK10Y9UBEC2Dm5hLThfP1RL*u0EtDg
+h2. You can keep track of upcoming features at "RememberTheMilk":todo. If you want to be notified as progress is made, you can subscribe to the "feed":todofeed!
 
-h2. More info
 
 *updateafraid* is not affiliated with or supported by "afraid.org":afraid.
 
@@ -91,3 +104,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 [afraid]http://afraid.org
 [logankoester]http://logankoester.com
 [todo]http://www.rememberthemilk.com/home/logan.koester/6437617/
+[todofeed]http://www.rememberthemilk.com/atom/logan.koester/6437617/?tok=eJwNjdEKwzAIAL8oI8ao8XM0mjJWVlj7-yzc08HBdXFCMIgVa2iIzzYpAmn0zWSF6EAxM6pgo11Vn6COFbgupHJeh31fnyvvJ3-lfN9P4Y7CIAVBrUp2M0VRGquOzH3pM7aqsK10Y9UBEC2Dm5hLThfP1RL*u0EtDg
+[growl]http://growl.info/
+[mumbles]http://www.mumbles-project.org/
