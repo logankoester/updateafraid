@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+%w{rubygems optiflag updateafraid}.each { |r| require r }
+
+#require '../lib/updateafraid.rb'
+
+module AfraidCLI extend OptiFlagSet
+	flag 'user'
+	flag 'password'
+	optional_flag 'domain'
+	optional_switch_flag 'all'
+	and_process!
+end
+
+@options = AfraidCLI.flags
+include Updateafraid
+
+@account = AfraidAccount.new(@options.user, @options.password)
+
+if !@options.domain and !@options.all
+	@account.print_domains
+elsif @options.all
+	@account.update_all.each {|r| puts r}
+elsif @options.domain
+	# Update this specific domain
+	updated = @account.update(@options.domain)
+	if !updated
+		puts "You don't have that domain!\n"
+		@account.print_domains
+	else
+		puts updated
+	end
+else
+	puts "See --help for usage"
+end

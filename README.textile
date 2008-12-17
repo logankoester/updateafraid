@@ -1,0 +1,71 @@
+*{color:red}This isn't quite ready yet and may be broken. You've been warned :-)*
+
+h1. UpdateAfraid
+
+_A Dynamic DNS client for domains hosted at "afraid.org":http://afraid.org._
+
+You can explore and update your ip from Ruby or the command line.
+The command-line program can be configured to run on an interval using *cron*.
+
+h3. On the command line...
+
+<pre><code>
+% updateafraid -user YOURUSERAME -password YOURPASSWORD
+You have 5 domains:
+yourdomain.com  (209.6.22.66)
+ftp.yourdomain.com      (209.6.22.66)
+irc.yourdomain.com      (209.6.22.66)
+mail.yourdomain.com     (209.6.22.66)
+www.yourdomain.com      (209.6.22.66)
+% 
+</code></pre>
+
+h3. In Ruby...
+
+<pre><code>
+%w{rubygems updateafraid}.each {|r| require r}
+include Updateafraid
+
+# Connect to afraid.org and figure out what's what
+afraid = AfraidAccount.new(username, password)
+
+# Display a formatted list of your domains to STDOUT
+afraid.print_domains
+
+# Display the details of the first domain
+p afraid.domains.first.host
+p afraid.domains.first.address
+p afraid.domains.first.url
+
+# Update one specific domain from your list
+afraid.update 'logankoester.com'
+
+# Update every domain on my list
+afraid.update_all
+
+</code></pre>
+
+h2. LICENSE:
+
+(The MIT License)
+
+Copyright (c) 2008 Logan Koester
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
