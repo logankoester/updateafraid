@@ -1,8 +1,9 @@
-*{color:red}This isn't quite ready yet and may be broken. You've been warned :-)*
-h1. A Dynamic DNS client for domains parked at "afraid.org":http://afraid.org.
+h1. A Dynamic DNS client for domains parked at "afraid.org":afraid.
 
-You can explore and update your ip from Ruby or the command line.
+You can explore and update your IP address from Ruby or the command line.
 The command-line program can be configured to run on an interval using *cron*.
+
+h2. Usage
 
 h3. On the command line...
 
@@ -14,8 +15,12 @@ ftp.yourdomain.com      (209.6.22.66)
 irc.yourdomain.com      (209.6.22.66)
 mail.yourdomain.com     (209.6.22.66)
 www.yourdomain.com      (209.6.22.66)
+</code></pre>
+<pre><code>
 % updateafraid -user YOURUSERAME -password YOURPASSWORD -domain yourdomain.com
 ERROR: Address 209.6.22.66 has not changed.
+</code></pre>
+<pre><code>
 % updateafraid -user YOURUSERAME -password YOURPASSWORD -all
 yourdomain.com - ERROR: Address 209.6.22.66 has not changed.
 ftp.yourdomain.com - ERROR: Address 209.6.22.66 has not changed.
@@ -49,11 +54,20 @@ afraid.update_all
 
 </code></pre>
 
+h2. TODO:
+You can keep track of upcoming features at "RememberTheMilk":todo.
+If you want to be notified as progress is made, you can subscribe to the "feed":http://www.rememberthemilk.com/atom/logan.koester/6437617/?tok=eJwNjdEKwzAIAL8oI8ao8XM0mjJWVlj7-yzc08HBdXFCMIgVa2iIzzYpAmn0zWSF6EAxM6pgo11Vn6COFbgupHJeh31fnyvvJ3-lfN9P4Y7CIAVBrUp2M0VRGquOzH3pM7aqsK10Y9UBEC2Dm5hLThfP1RL*u0EtDg
+
+h2. More info
+
+*updateafraid* is not affiliated with or supported by "afraid.org":afraid.
+
+
 h2. LICENSE:
 
 (The MIT License)
 
-Copyright (c) 2008 Logan Koester
+Copyright (c) 2008 "Logan Koester":logankoester
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -73,3 +87,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
 CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+[afraid]http://afraid.org
+[logankoester]http://logankoester.com
+[todo]http://www.rememberthemilk.com/home/logan.koester/6437617/
