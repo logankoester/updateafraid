@@ -17,8 +17,8 @@ spec = Gem::Specification.new do |s|
   s.version = GEM_VERSION
   s.platform = Gem::Platform::RUBY
   s.summary = SUMMARY
-  s.require_paths = ['lib']
-  s.files = FileList['lib/**/*.rb' '[A-Z]*'].to_a
+  s.require_paths = ['lib', 'bin']
+  s.files = FileList['lib/*.rb' '[A-Z]*'].to_a
   
   s.author = AUTHOR
   s.email = EMAIL
@@ -28,7 +28,7 @@ spec = Gem::Specification.new do |s|
 end
 
 Spec::Rake::SpecTask.new do |t|
-  t.spec_files = FileList['spec/**/*_spec.rb']
+  t.spec_files = FileList['spec/*_spec.rb']
   t.spec_opts = %w(-fs --color)
 end
   

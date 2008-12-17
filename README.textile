@@ -1,8 +1,5 @@
 *{color:red}This isn't quite ready yet and may be broken. You've been warned :-)*
-
-h1. UpdateAfraid
-
-_A Dynamic DNS client for domains hosted at "afraid.org":http://afraid.org._
+h1. A Dynamic DNS client for domains hosted at "afraid.org":http://afraid.org.
 
 You can explore and update your ip from Ruby or the command line.
 The command-line program can be configured to run on an interval using *cron*.
@@ -17,7 +14,14 @@ ftp.yourdomain.com      (209.6.22.66)
 irc.yourdomain.com      (209.6.22.66)
 mail.yourdomain.com     (209.6.22.66)
 www.yourdomain.com      (209.6.22.66)
-% 
+% updateafraid -user YOURUSERAME -password YOURPASSWORD -domain yourdomain.com
+ERROR: Address 209.6.22.66 has not changed.
+% updateafraid -user YOURUSERAME -password YOURPASSWORD -all
+yourdomain.com - ERROR: Address 209.6.22.66 has not changed.
+ftp.yourdomain.com - ERROR: Address 209.6.22.66 has not changed.
+irc.yourdomain.com - ERROR: Address 209.6.22.66 has not changed.
+mail.yourdomain.com - ERROR: Address 209.6.22.66 has not changed.
+www.yourdomain.com - ERROR: Address 209.6.22.66 has not changed.
 </code></pre>
 
 h3. In Ruby...
