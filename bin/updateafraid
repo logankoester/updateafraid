@@ -33,33 +33,33 @@ module AfraidCLI extend OptiFlagSet
 	and_process!
 end
 
-@options = AfraidCLI.flags
+flag = AfraidCLI.flags
 include Updateafraid
 
-if @options.growl
+if flag.growl
 	require 'ruby-growl'
-	@g = Growl.new @options.growl,
-		"updateafraid", ["updateafraid"], nil, @options.growlpass
+	@g = Growl.new flag.growl,
+		"updateafraid", ["updateafraid"], nil, flag.growlpass
 end
 
-@account = AfraidAccount.new(@options.user, @options.password)
+@account = AfraidAccount.new(flag.user, flag.password)
 
-if !@options.domain and !@options.all
+if !flag.domain and !flag.all
 	@account.print_domains
-elsif @options.all
+elsif flag.all
 	@account.update_all.each {|r|
 		puts r
-		@g.notify 'updateafraid', 'UpdateAfraid', r if @options.growl
+		@g.notify 'updateafraid', 'UpdateAfraid', r if flag.growl
 	}
-elsif @options.domain
+elsif flag.domain
 	# Update this specific domain
-	updated = @account.update(@options.domain)
+	updated = @account.update(flag.domain)
 	if !updated
 		puts "You don't have that domain!\n"
 		@account.print_domains
 	else
 		puts updated
-		@g.notify 'updateafraid', 'UpdateAfraid', updated if @options.growl
+		@g.notify 'updateafraid', 'UpdateAfraid', updated if flag.growl
 	end
 else
 	puts "See --help for usage"
