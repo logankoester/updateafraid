@@ -42,7 +42,7 @@ if flag.growl
 		"updateafraid", ["updateafraid"], nil, flag.growlpass
 end
 
-@account = AfraidAccount.new(flag.user, flag.password)
+@account = AfraidAccount.new(flag.user, flag.pass)
 
 if !flag.domain and !flag.all
 	@account.print_domains
