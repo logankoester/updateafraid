@@ -18,8 +18,9 @@ spec = Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
   s.summary = SUMMARY
   s.require_paths = ['lib', 'bin']
-  s.files = FileList['lib/*.rb' '[A-Z]*'].to_a
-  
+  #s.files = FileList['lib/**/*.rb' '[A-Z]*'].to_a
+  #s.files = FileList['bin/*' '[A-Z]*'].to_a
+  s.files = ['bin/updateafraid', 'lib/updateafraid.rb']
   s.author = AUTHOR
   s.email = EMAIL
   s.homepage = HOMEPAGE
@@ -28,7 +29,7 @@ spec = Gem::Specification.new do |s|
 end
 
 Spec::Rake::SpecTask.new do |t|
-  t.spec_files = FileList['spec/*_spec.rb']
+  t.spec_files = FileList['spec/**/*_spec.rb']
   t.spec_opts = %w(-fs --color)
 end
   

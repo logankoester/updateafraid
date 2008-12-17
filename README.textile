@@ -1,5 +1,5 @@
 *{color:red}This isn't quite ready yet and may be broken. You've been warned :-)*
-h1. A Dynamic DNS client for domains hosted at "afraid.org":http://afraid.org.
+h1. A Dynamic DNS client for domains parked at "afraid.org":http://afraid.org.
 
 You can explore and update your ip from Ruby or the command line.
 The command-line program can be configured to run on an interval using *cron*.

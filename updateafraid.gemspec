@@ -8,4 +8,5 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://logankoester.com}
   s.rubyforge_project = %q{updateafraid}
   s.authors = ["Logan Koester"]
+  s.files = ["bin/updateafraid", "lib/updateafraid.rb"]
 end
