@@ -2,22 +2,55 @@
 %w{rubygems optiflag updateafraid}.each { |r| require r }
 
 module AfraidCLI extend OptiFlagSet
-	flag 'user'
-	flag 'password'
-	optional_flag 'domain'
-	optional_switch_flag 'all'
+	flag 'user' do
+		description 'Your Afraid.org username'
+		alternate_forms 'u','U'
+		long_form 'username'
+	end
+	flag 'pass' do
+		description 'Your Afraid.org password'
+		alternate_forms 'p','P'
+		long_form 'password'
+	end
+	optional_flag 'domain' do
+		description 'Update IP address for one domain: -domain <name>' 
+		alternate_forms 'd','D'
+	end
+	optional_switch_flag 'all' do
+		description 'Update IP address for all domains in your account'
+		alternate_forms 'a','A'
+	end
+	optional_flag 'growl' do
+		description 'Send Growl / Mumbles notifications: -growl localhost (default)'
+		alternate_forms 'g','G','mumbles'
+		long_form 'growl-at'
+		default 'localhost'
+	end
+	optional_flag 'growlpass' do
+		description 'Growl password'
+		long_form 'growl-password'
+	end
 	and_process!
 end
 
 @options = AfraidCLI.flags
 include Updateafraid
 
+if @options.growl
+	require 'ruby-growl'
+	@g = Growl.new @options.growl,
+		"updateafraid", ["updateafraid"], nil, @options.growlpass
+end
+
 @account = AfraidAccount.new(@options.user, @options.password)
 
 if !@options.domain and !@options.all
 	@account.print_domains
 elsif @options.all
-	@account.update_all.each {|r| puts r}
+	@account.update_all.each {|r|
+		puts r
+		@g.notify 'updateafraid', 'UpdateAfraid', r if @options.growl
+	}
 elsif @options.domain
 	# Update this specific domain
 	updated = @account.update(@options.domain)
@@ -26,6 +59,7 @@ elsif @options.domain
 		@account.print_domains
 	else
 		puts updated
+		@g.notify 'updateafraid', 'UpdateAfraid', updated if @options.growl
 	end
 else
 	puts "See --help for usage"
