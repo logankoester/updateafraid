@@ -4,7 +4,7 @@ require 'rake'
 require 'rake/gempackagetask'
  
 GEM = "updateafraid"
-GEM_VERSION = "0.1.1"
+GEM_VERSION = "0.1.2"
 SUMMARY = "A Dynamic DNS client for domains parked at afraid.org"
 AUTHOR = "Logan Koester"
 EMAIL = "logan@logankoester.com"
