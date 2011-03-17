@@ -2,7 +2,6 @@ require 'rubygems'
 require 'rubygems/specification'
 require 'rake'
 require 'rake/gempackagetask'
-require 'spec/rake/spectask'
  
 GEM = "updateafraid"
 GEM_VERSION = "0.1.1"
@@ -31,18 +30,13 @@ spec = Gem::Specification.new do |s|
   s.rubyforge_project = GEM # GitHub bug, gem isn't being build when this miss
 end
 
-Spec::Rake::SpecTask.new do |t|
-  t.spec_files = ['spec/updateafraid_spec.rb']
-  t.spec_opts = %w(-fs --color)
-end
-  
 Rake::GemPackageTask.new(spec) do |pkg|
   pkg.gem_spec = spec
 end
  
 desc "Install the gem locally"
 task :install => [:package] do
-  sh %{sudo gem install pkg/#{GEM}-#{GEM_VERSION}}
+  sh %{gem install pkg/#{GEM}-#{GEM_VERSION}}
 end
  
 desc "Create a gemspec file"

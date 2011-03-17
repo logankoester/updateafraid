@@ -20,27 +20,11 @@ module AfraidCLI extend OptiFlagSet
 		description 'Update IP address for all domains in your account'
 		alternate_forms 'a','A'
 	end
-	optional_flag 'growl' do
-		description 'Send Growl / Mumbles notifications: -growl localhost (default)'
-		alternate_forms 'g','G','mumbles'
-		long_form 'growl-at'
-		default 'localhost'
-	end
-	optional_flag 'growlpass' do
-		description 'Growl password'
-		long_form 'growl-password'
-	end
 	and_process!
 end
 
 flag = AfraidCLI.flags
 include Updateafraid
-
-if flag.growl
-	require 'ruby-growl'
-	@g = Growl.new flag.growl,
-		"updateafraid", ["updateafraid"], nil, flag.growlpass
-end
 
 @account = AfraidAccount.new(flag.user, flag.pass)
 
@@ -49,7 +33,6 @@ if !flag.domain and !flag.all
 elsif flag.all
 	@account.update_all.each {|r|
 		puts r
-		@g.notify 'updateafraid', 'UpdateAfraid', r if flag.growl
 	}
 elsif flag.domain
 	# Update this specific domain
@@ -59,7 +42,6 @@ elsif flag.domain
 		@account.print_domains
 	else
 		puts updated
-		@g.notify 'updateafraid', 'UpdateAfraid', updated if flag.growl
 	end
 else
 	puts "See --help for usage"
